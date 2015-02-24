@@ -11,7 +11,6 @@ include_recipe 'aws_ha_chef::hosts'
 include_recipe 'aws_ha_chef::disable_iptables'
 include_recipe 'aws_ha_chef::server'
 include_recipe 'aws_ha_chef::ha'
-include_recipe 'aws_ha_chef::push_jobs'
 include_recipe 'aws_ha_chef::reporting'
 
 # Make sure we have LVM installed in case of failover
