@@ -27,3 +27,5 @@ server '<%= host_data['fqdn'] -%>',
 <% end -%>
 
 api_fqdn '<%= node['aws_ha_chef']['api_fqdn'] -%>'
+
+opscode_erchef['max_request_size'] = 1000000
