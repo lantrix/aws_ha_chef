@@ -9,5 +9,6 @@ branches:
   only:
     - master
     - develop
+    - ubuntu-12.04-LTS
 script:
   - bundle exec rake default
