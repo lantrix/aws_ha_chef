@@ -144,7 +144,7 @@ machine_batch do
           :instance_type => 't2.small'
         },
         # Ubuntu-precise-12.04 EBS/SSD amd64 20150227 - http://cloud-images.ubuntu.com/releases/12.04.2/release/
-	:image_id => 'ami-fd7959cd'
+        :image_id => 'ami-fd7959cd'
       })
       attributes(
         aws_ha_chef: {
