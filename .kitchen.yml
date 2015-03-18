@@ -6,8 +6,8 @@ driver:
   region: us-west-2
   availability_zone: us-west-2a
   security_group_ids: ['sg-7dabec18']
-  image_id: ami-b6bdde86
-  flavor_id: m3.medium
+  image_id: ami-fd7959cd
+  flavor_id: t2.medium
   ssh_timeout: 3
   ssh_retries: 5
   require_chef_omnibus: 11.16.4
@@ -54,7 +54,7 @@ suites:
       - recipe[aws_ha_chef::frontend]
     driver_config:
       subnet_id: subnet-4d70cd28
-      flavor_id: m1.small
+      flavor_id: t2.small
       availability_zone: us-west-2a
       security_group_ids: ['sg-7dabec18', 'sg-e9b7f08c']
       private_ip_address: 172.25.10.125
@@ -67,7 +67,7 @@ suites:
       - recipe[aws_ha_chef::frontend]
     driver_config:
       subnet_id: subnet-45fd2e32
-      flavor_id: m1.small
+      flavor_id: t2.small
       availability_zone: us-west-2b
       security_group_ids: ['sg-7dabec18', 'sg-e9b7f08c']
       private_ip_address: 172.25.20.125
@@ -80,7 +80,7 @@ suites:
       - recipe[aws_ha_chef::frontend]
     driver_config:
       subnet_id: subnet-1ae51543
-      flavor_id: m1.small
+      flavor_id: t2.small
       availability_zone: us-west-2c
       security_group_ids: ['sg-7dabec18', 'sg-e9b7f08c']
       private_ip_address: 172.25.30.125

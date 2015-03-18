@@ -9,5 +9,5 @@
 # distributes necessary config files to other nodes.
 
 execute 'chef-server-ctl install opscode-reporting' do
-  not_if "rpm -q opscode-reporting"
+  not_if "dpkg-query -W opscode-reporting"
 end

@@ -3,6 +3,10 @@ aws_ha_chef  CHANGELOG
 
 This file is used to list changes made in each version of the tiered-chef-server cookbook.
 
+1.1.0
+-----
+- lantrix - Switched to Ubuntu 12.04.5 LTS
+
 1.0.0
 -----
 - scarolan - Out with the old n' busted, in with the new hotness.

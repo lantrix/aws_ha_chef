@@ -5,5 +5,5 @@
 # This recipe installs the push jobs add-on.
 
 execute 'chef-server-ctl install opscode-push-jobs-server' do
-  not_if "rpm -q opscode-push-jobs-server"
+  not_if "dpkg-query -W opscode-push-jobs-server"
 end

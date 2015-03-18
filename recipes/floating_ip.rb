@@ -8,16 +8,39 @@
 # Required to build the cantakerous nokogiri gem
 package 'gcc' do
   action :install
+  provider Chef::Provider::Package::Apt
+end.run_action(:install)
+
+package 'libxml2-dev' do
+  action :install
+  provider Chef::Provider::Package::Apt
+end.run_action(:install)
+
+package 'libxslt-dev' do
+  action :install
+  provider Chef::Provider::Package::Apt
+end.run_action(:install)
+
+package 'libghc-zlib-dev' do
+  action :install
+  provider Chef::Provider::Package::Apt
+end.run_action(:install)
+
+package 'build-essential' do
+  action :install
+  provider Chef::Provider::Package::Apt
 end.run_action(:install)
 
 # Is this necessary? Or will just gcc work?
-package 'ruby-devel' do
+package 'ruby-dev' do
   action :install
+  provider Chef::Provider::Package::Apt
 end.run_action(:install)
 
 # Behold the Nokogiri and tremble in fear!
 chef_gem 'nokogiri' do
   version '1.6.1'
+  options "-- --use-system-libraries"
   action :install
 end
 

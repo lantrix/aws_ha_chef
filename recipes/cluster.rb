@@ -49,7 +49,7 @@ execute 'opscode-reporting-ctl reconfigure'
 execute 'opscode-push-jobs-server-ctl reconfigure'
 execute 'opscode-manage-ctl reconfigure' do
   action :run
-  only_if "rpm -q opscode-manage"
+  only_if "dpkg-query -W opscode-manage"
 end
 
 # Stop the Chef server, but only on the secondary back-end. Some how push

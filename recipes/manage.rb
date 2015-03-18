@@ -5,5 +5,5 @@
 # This recipe installs the manage UI add-on.
 
 execute 'chef-server-ctl install opscode-manage' do
-  not_if "rpm -q opscode-manage"
+  not_if "dpkg-query -W opscode-manage"
 end

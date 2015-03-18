@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/scarolan/aws_ha_chef.svg?branch=master)](https://travis-ci.org/scarolan/aws_ha_chef)
+[![Build Status](https://travis-ci.org/lantrix/aws_ha_chef.svg?branch=ubuntu-12.04-LTS)](https://travis-ci.org/lantrix/aws_ha_chef)
 
 aws_ha_chef Cookbook
 ===========================

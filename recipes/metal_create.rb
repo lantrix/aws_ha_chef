@@ -25,7 +25,7 @@ machine_batch do
   machine 'backend1.example.local' do
     recipe 'aws_ha_chef::primary'
     machine_options({
-      :ssh_username => 'root',
+      :ssh_username => 'ubuntu',
       :bootstrap_options => {
         # Why can't we just read these in from the default attributes?
         :availability_zone => 'us-west-2a',
@@ -33,9 +33,10 @@ machine_batch do
         :security_group_ids => ['sg-7dabec18', 'sg-59b6f13c'],
         :private_ip_address => '172.25.10.98',
         :key_name => ENV['AWS_SSH_KEY_ID'],
-        :instance_type => 'm3.medium'
+        :instance_type => 't2.medium'
       },
-      :image_id => 'ami-b6bdde86'
+      # Ubuntu-precise-12.04 EBS/SSD amd64 20150227 - http://cloud-images.ubuntu.com/releases/12.04.2/release/
+      :image_id => 'ami-fd7959cd'
     })
     attributes(
       aws_ha_chef: {
@@ -83,9 +84,10 @@ machine_batch do
         :security_group_ids => ['sg-7dabec18', 'sg-59b6f13c'],
         :private_ip_address => '172.25.10.99',
         :key_name => ENV['AWS_SSH_KEY_ID'],
-        :instance_type => 'm3.medium'
+        :instance_type => 't2.medium'
      },
-     :image_id => 'ami-b6bdde86'
+      # Ubuntu-precise-12.04 EBS/SSD amd64 20150227 - http://cloud-images.ubuntu.com/releases/12.04.2/release/
+      :image_id => 'ami-fd7959cd'
     })
     attributes(
       aws_ha_chef: {
@@ -139,9 +141,10 @@ machine_batch do
           :security_group_ids => ['sg-7dabec18', 'sg-e9b7f08c'],
           :private_ip_address => host_data['ip_address'],
           :key_name => ENV['AWS_SSH_KEY_ID'],
-          :instance_type => 'm1.small'
+          :instance_type => 't2.small'
         },
-        :image_id => 'ami-b6bdde86'
+        # Ubuntu-precise-12.04 EBS/SSD amd64 20150227 - http://cloud-images.ubuntu.com/releases/12.04.2/release/
+	:image_id => 'ami-fd7959cd'
       })
       attributes(
         aws_ha_chef: {

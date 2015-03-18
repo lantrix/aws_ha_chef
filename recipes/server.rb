@@ -5,6 +5,11 @@
 # This recipe only installs the Chef core server software, but does not configure it.
 # It can be used on both front-end and back-end servers.
 
+#Need to update before installing chef-server-core
+execute "aptget-update" do
+	command 'dpkg --configure -a && apt-get update -y'
+end
+
 # Use the 'server_file' helper to strip filename off the end of URLs.
 # This way you don't have to store URLs and filenames separately.
 chef_core_filepath = "#{Chef::Config[:file_cache_path]}/#{server_file(node['aws_ha_chef']['urls']['core'])}"
@@ -16,4 +21,5 @@ end
 package 'chef-server-core' do
   action :install
   source chef_core_filepath
+  provider Chef::Provider::Package::Dpkg
 end

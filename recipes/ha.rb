@@ -20,4 +20,5 @@ end
 package 'chef-ha' do
   action :install
   source chef_ha_filepath
+  provider Chef::Provider::Package::Dpkg
 end
