@@ -9,9 +9,6 @@
 #
 # 1. We have to be able to specify the version of the chef client on the
 #    target machines in order for the LVM cookbook to work.
-# 2. We had to hard-code the username that chef-provisioning-aws uses to
-#    'root' instead of 'ubuntu'. For some reason specifying :ssh_username
-#    was not working.
 
 require 'chef/provisioning/aws_driver'
 
@@ -28,6 +25,7 @@ machine_batch do
   machine 'backend1.example.local' do
     recipe 'aws_ha_chef::primary'
     machine_options({
+      :ssh_username => 'root',
       :bootstrap_options => {
         # Why can't we just read these in from the default attributes?
         :availability_zone => 'us-west-2a',
@@ -77,6 +75,7 @@ machine_batch do
   machine 'backend2.example.local' do
     recipe 'aws_ha_chef::secondary'
     machine_options({
+      :ssh_username => 'root',
       :bootstrap_options => {
         # Why can't we just read these in from the default attributes?
         :availability_zone => 'us-west-2a',
@@ -132,6 +131,7 @@ machine_batch do
     machine host_data['fqdn'] do
       recipe 'aws_ha_chef::frontend'
       machine_options({
+        :ssh_username => 'root',
         :bootstrap_options => {
           # Why can't we just read this in from the default attributes?
           :availability_zone => 'us-west-2a',
