@@ -12,8 +12,8 @@ include_recipe "aws_ha_chef::disable_iptables"
 include_recipe "aws_ha_chef::floating_ip"
 include_recipe "aws_ha_chef::server"
 include_recipe "aws_ha_chef::ha"
-include_recipe "aws_ha_chef::configfile"
 include_recipe "aws_ha_chef::ebs_volume"
+include_recipe "aws_ha_chef::configfile"
 
 # Create missing keepalived cluster status files
 directory '/var/opt/opscode/keepalived' do
@@ -52,6 +52,8 @@ include_recipe 'aws_ha_chef::reporting'
 include_recipe 'aws_ha_chef::push_jobs'
 
 # Configure for reporting and push jobs
+
+# looks like this also tries to use chef-zero, causing breakage when you run it via provisioning.
 execute 'opscode-reporting-ctl reconfigure'
 execute 'opscode-push-jobs-server-ctl reconfigure'
 

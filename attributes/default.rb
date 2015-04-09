@@ -19,6 +19,7 @@ default['aws_ha_chef']['aws_secret_access_key']             = ''
 
 # Used by the floating_ip recipe
 default['aws_ha_chef']['region']                            = 'us-west-2'
+default['aws_ha_chef']['availability_zone']                 = 'us-west-2a'
 
 # FQDN of your Amazon Elastic Load Balancer
 # Hand-crafted artisinal load balancer

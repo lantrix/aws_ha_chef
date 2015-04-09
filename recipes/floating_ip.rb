@@ -20,6 +20,15 @@ end
 chef_gem 'fog'
 require 'fog'
 
+# Need a ~/.fog config file for the rest of this to work.
+template "/root/.fog" do
+  action :create
+  owner "root"
+  group "root"
+  mode "0644"
+  source "fog.erb"
+end.run_action(:create)
+
 # Fetch our MAC address
 mac = File.read('/sys/class/net/eth0/address').strip
 # Use the MAC to get our AWS interface ID
@@ -29,7 +38,7 @@ eth0_interface_id = Mixlib::ShellOut.new("curl http://169.254.169.254/latest/met
 log "print_network_info" do
   message "My MAC address is #{mac}\nMy interface id is #{eth0_interface_id}"
   level :debug
-end
+end.run_action(:write)
 
 # Create a new AWS compute connection
 connection = Fog::Compute.new(
