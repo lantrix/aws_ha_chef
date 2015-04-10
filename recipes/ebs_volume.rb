@@ -75,4 +75,8 @@ lvm_volume_group 'chef' do
     filesystem  'ext4'
     mount_point '/var/opt/opscode/drbd/data'
   end
+
+  only_if "fdisk -l /dev/xvdj | grep xvdj"
+  retries 5
+  retry_delay 30
 end.run_action(:create)
