@@ -19,7 +19,7 @@ template '/etc/opscode/chef-server.rb' do
   group 'root'
   variables(
     lazy do
-      {:ebs_volume_id => node.run_state['ebs_vol_id']}
+      {:ebs_volume_id => node.run_state['ebs_volume_id']}
     end
   )
   mode '0644'

@@ -64,7 +64,11 @@ e = aws_ebs_volume 'chef_ebs_volume' do
 end
 
 e.run_action(:create)
-Chef::Log.debug("Volume ID is: #{Chef::Resource::AwsEbsVolume.get_aws_object_id('chef_ebs_volume', resource: e)}")
+
+# For some reason ebs_volume_id is returning an empty string the first time this is run.
+Chef::Log.info("Volume ID is: #{Chef::Resource::AwsEbsVolume.get_aws_object_id('chef_ebs_volume', resource: e)}")
+
+# Hopefully the delay loop above allows the volume ID enough time to become visible.
 node.run_state['ebs_volume_id'] = Chef::Resource::AwsEbsVolume.get_aws_object_id('chef_ebs_volume', resource: e)
 
 lvm_volume_group 'chef' do
@@ -76,7 +80,6 @@ lvm_volume_group 'chef' do
     mount_point '/var/opt/opscode/drbd/data'
   end
 
-  only_if "fdisk -l /dev/xvdj | grep xvdj"
   retries 5
   retry_delay 30
 end.run_action(:create)

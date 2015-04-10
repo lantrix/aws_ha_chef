@@ -4,5 +4,5 @@ maintainer_email 'scarolan@chef.io'
 license          'All rights reserved'
 description      'Installs an HA Chef cluster in AWS EC2'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.1.1'
+version          '1.1.3'
 depends          'lvm', '= 1.3.6'
