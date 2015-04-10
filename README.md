@@ -56,6 +56,7 @@ default['aws_ha_chef']['ebs_volume_id']            EBS volume id.  Create and at
 default['aws_ha_chef']['ebs_device']               Device ID of the ebs_device.  Default is /dev/xvdj
 
 default['aws_ha_chef']['region']                   Region your cluster will be installed in
+default['aws_ha_chef']['availability_zone']        AZ the backend machines will reside in
 
 default['aws_ha_chef']['backend_vip']['fqdn']      FQDN of the backend VIP.  Defaults to backend-vip
 default['aws_ha_chef']['backend_vip']['ip_address'] IP address of the backend VIP. 
