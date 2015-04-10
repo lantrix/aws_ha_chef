@@ -83,6 +83,14 @@ Usage
 
 Usage is fairly simple and straightforward. First configure all the attributes listed above via a role, *.json file, or .kitchen.yml file. The NTP recipe is only required if you don't already have a way to configure NTP.  The hosts recipe sets up your /etc/hosts and /etc/sysconfig/network files so you can use familiar hostnames instead of the ones assigned by Amazon EC2.  See the default attributes file for examples.
 
+If you wish to use Chef provisioning to bring up the cluster, you can use this command:
+
+```
+chef-client -z --chef-zero-port 8899 -o aws_ha_chef::metal_create
+```
+
+(Running Chef Zero on an alternate port is required because of the way the Chef reporting add-on is installed via Chef Zero locally.)
+
 Sample IAM Account Settings
 -----
 These settings are tested and verified working via an IAM user created explicitly for deploying the HA Chef server configuration. You can also apply these settings to a role policy, and then allow users to assume the role if you wish.  This prevents you from having to secure keys, as the keys are generated dynamically when necessary.
@@ -97,6 +105,7 @@ These settings are tested and verified working via an IAM user created explicitl
       "Action": [
         "ec2:AttachVolume",
         "ec2:CreateVolume",
+        "ec2:CreateTags",
         "ec2:DescribeVolumeAttribute",
         "ec2:DescribeVolumeStatus",
         "ec2:DescribeVolumes",
