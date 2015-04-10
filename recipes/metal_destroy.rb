@@ -68,7 +68,7 @@ machine 'backend1.example.local' do
       }
     }
   )
-  #action :destroy
+  action :destroy
 end
 
 # Provision secondary backend
@@ -117,7 +117,7 @@ machine 'backend2.example.local' do
       }
     }
   )
-  #action :destroy
+  action :destroy
 end
 
 # Provision frontends
@@ -172,6 +172,6 @@ frontends.each do |_host, host_data|
         }
       }
     )
-    #action :destroy
+    action :destroy
   end
 end
