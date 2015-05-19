@@ -35,8 +35,8 @@ machine_batch do
         :key_name => ENV['AWS_SSH_KEY_ID'],
         :instance_type => 't2.medium'
       },
-      # Ubuntu-precise-12.04 EBS/SSD amd64 20150227 - http://cloud-images.ubuntu.com/releases/12.04.2/release/
-      :image_id => 'ami-fd7959cd'
+      # Ubuntu-trusty-14.04 EBS/SSD amd64 20150506 - http://cloud-images.ubuntu.com/releases/14.04/release/
+      :image_id => 'ami-3789b807'
     })
     attributes(
       aws_ha_chef: {
@@ -86,8 +86,8 @@ machine_batch do
         :key_name => ENV['AWS_SSH_KEY_ID'],
         :instance_type => 't2.medium'
      },
-      # Ubuntu-precise-12.04 EBS/SSD amd64 20150227 - http://cloud-images.ubuntu.com/releases/12.04.2/release/
-      :image_id => 'ami-fd7959cd'
+      # Ubuntu-trusty-14.04 EBS/SSD amd64 20150506 - http://cloud-images.ubuntu.com/releases/14.04/release/
+      :image_id => 'ami-3789b807'
     })
     attributes(
       aws_ha_chef: {
@@ -143,8 +143,8 @@ machine_batch do
           :key_name => ENV['AWS_SSH_KEY_ID'],
           :instance_type => 't2.small'
         },
-        # Ubuntu-precise-12.04 EBS/SSD amd64 20150227 - http://cloud-images.ubuntu.com/releases/12.04.2/release/
-        :image_id => 'ami-fd7959cd'
+        # Ubuntu-trusty-14.04 EBS/SSD amd64 20150506 - http://cloud-images.ubuntu.com/releases/14.04/release/
+        :image_id => 'ami-3789b807'
       })
       attributes(
         aws_ha_chef: {

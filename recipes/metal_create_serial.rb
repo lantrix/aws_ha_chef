@@ -36,7 +36,8 @@ machine 'backend1.example.local' do
       :key_name => ENV['AWS_SSH_KEY_ID'],
       :instance_type => 'm3.medium'
     },
-    :image_id => 'ami-b6bdde86'
+    # Ubuntu-precise-14.04 EBS/SSD amd64 20150506 - http://cloud-images.ubuntu.com/releases/14.04/release/
+    :image_id => 'ami-3789b807'
   })
   attributes(
     aws_ha_chef: {
@@ -86,7 +87,8 @@ machine 'backend2.example.local' do
       :key_name => ENV['AWS_SSH_KEY_ID'],
       :instance_type => 'm3.medium'
    },
-   :image_id => 'ami-b6bdde86'
+   # Ubuntu-precise-14.04 EBS/SSD amd64 20150506 - http://cloud-images.ubuntu.com/releases/14.04/release/
+   :image_id => 'ami-3789b807'
   })
   attributes(
     aws_ha_chef: {
@@ -142,7 +144,8 @@ frontends.each do |_host, host_data|
         :key_name => ENV['AWS_SSH_KEY_ID'],
         :instance_type => 'm1.small'
       },
-      :image_id => 'ami-b6bdde86'
+      # Ubuntu-precise-14.04 EBS/SSD amd64 20150506 - http://cloud-images.ubuntu.com/releases/14.04/release/
+      :image_id => 'ami-3789b807'
     })
     attributes(
       aws_ha_chef: {
