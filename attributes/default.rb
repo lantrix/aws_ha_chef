@@ -40,6 +40,9 @@ default['aws_ha_chef']['ebs_device']                        = '/dev/xvdj'
 # /etc/hosts file on all machines in the cluster, so you don't need to worry
 # too much about DNS, at least for internal communication in the cluster.
 
+#For Ubunutu Apt cookbook
+default['apt']['compile_time_update']                       = true
+
 # Backend servers.  Must be in same availability zone, for example: us-west-2b
 default['aws_ha_chef']['backend1']['fqdn']                  = 'backend1.example.local'
 default['aws_ha_chef']['backend1']['ip_address']            = '172.25.10.98'
