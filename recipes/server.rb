@@ -7,7 +7,7 @@
 
 #Need to update before installing chef-server-core
 execute "dpkg-configure" do
-	command 'dpkg --configure -a'
+  command 'dpkg --configure -a'
 end
 
 # Use the 'server_file' helper to strip filename off the end of URLs.
