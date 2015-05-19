@@ -67,7 +67,6 @@ machine_batch do
         }
       }
     )
-    #action :destroy
   end
 
   # Provision secondary backend
@@ -117,7 +116,6 @@ machine_batch do
         }
       }
     )
-    #action :destroy
   end
 
   # Provision frontends
@@ -173,7 +171,6 @@ machine_batch do
           }
         }
       )
-      #action :destroy
     end
   end
 end
