@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+node.default['apt']['compile_time_update'] = true
+include_recipe[apt]
 include_recipe "aws_ha_chef::hosts"
 include_recipe "aws_ha_chef::disable_iptables"
 include_recipe "aws_ha_chef::floating_ip"

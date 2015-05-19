@@ -6,8 +6,8 @@
 # It can be used on both front-end and back-end servers.
 
 #Need to update before installing chef-server-core
-execute "aptget-update" do
-  command 'dpkg --configure -a && apt-get update -y'
+execute "dpkg-configure" do
+	command 'dpkg --configure -a'
 end
 
 # Use the 'server_file' helper to strip filename off the end of URLs.

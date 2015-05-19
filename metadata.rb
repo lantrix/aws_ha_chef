@@ -7,3 +7,4 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '1.1.4'
 depends          'lvm', '= 1.3.6'
 depends          'hostnames'
+depends          'apt'
