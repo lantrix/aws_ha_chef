@@ -124,9 +124,9 @@ machine_batch do
 
   # Provision frontends
   frontends = {
-    'fe1' => { 'fqdn' => 'frontend1.example.local', 'ip_address' => '172.25.10.100' },
-    'fe2' => { 'fqdn' => 'frontend2.example.local', 'ip_address' => '172.25.10.101' },
-    'fe3' => { 'fqdn' => 'frontend3.example.local', 'ip_address' => '172.25.10.102' }
+   'fe1' => { 'fqdn' => 'frontend1.example.local', 'ip_address' => '172.25.10.100' },
+   'fe2' => { 'fqdn' => 'frontend2.example.local', 'ip_address' => '172.25.10.101' },
+   'fe3' => { 'fqdn' => 'frontend3.example.local', 'ip_address' => '172.25.10.102' }
   }
   #node['aws_ha_chef']['frontends'].each do |_host, host_data|
   frontends.each do |_host, host_data|

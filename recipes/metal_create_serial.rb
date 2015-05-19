@@ -1,7 +1,9 @@
 #
 # Cookbook Name:: aws_ha_chef
-# Recipe:: metal_create
+# Recipe:: metal_create_serial
 #
+
+# Can create servers serially, instead of in parallel.
 
 # Creates an HA Chef 12 cluster in AWS.
 # This recipe requires customized versions of chef-provisioning and
@@ -9,9 +11,6 @@
 #
 # 1. We have to be able to specify the version of the chef client on the
 #    target machines in order for the LVM cookbook to work.
-# 2. We had to hard-code the username that chef-provisioning-aws uses to
-#    'root' instead of 'ubuntu'. For some reason specifying :ssh_username
-#    was not working.
 
 require 'chef/provisioning/aws_driver'
 
@@ -27,6 +26,7 @@ with_driver 'aws'
 machine 'backend1.example.local' do
   recipe 'aws_ha_chef::primary'
   machine_options({
+    :ssh_username => 'root',
     :bootstrap_options => {
       # Why can't we just read these in from the default attributes?
       :availability_zone => 'us-west-2a',
@@ -68,7 +68,7 @@ machine 'backend1.example.local' do
       }
     }
   )
-  action :destroy
+  #action :destroy
 end
 
 # Provision secondary backend
@@ -76,6 +76,7 @@ end
 machine 'backend2.example.local' do
   recipe 'aws_ha_chef::secondary'
   machine_options({
+    :ssh_username => 'root',
     :bootstrap_options => {
       # Why can't we just read these in from the default attributes?
       :availability_zone => 'us-west-2a',
@@ -117,20 +118,21 @@ machine 'backend2.example.local' do
       }
     }
   )
-  action :destroy
+  #action :destroy
 end
 
 # Provision frontends
 frontends = {
-  'fe1' => { 'fqdn' => 'frontend1.example.local', 'ip_address' => '172.25.10.100' },
-  'fe2' => { 'fqdn' => 'frontend2.example.local', 'ip_address' => '172.25.10.101' },
-  'fe3' => { 'fqdn' => 'frontend3.example.local', 'ip_address' => '172.25.10.102' }
+ 'fe1' => { 'fqdn' => 'frontend1.example.local', 'ip_address' => '172.25.10.100' },
+ 'fe2' => { 'fqdn' => 'frontend2.example.local', 'ip_address' => '172.25.10.101' },
+ 'fe3' => { 'fqdn' => 'frontend3.example.local', 'ip_address' => '172.25.10.102' }
 }
 #node['aws_ha_chef']['frontends'].each do |_host, host_data|
 frontends.each do |_host, host_data|
   machine host_data['fqdn'] do
     recipe 'aws_ha_chef::frontend'
     machine_options({
+      :ssh_username => 'root',
       :bootstrap_options => {
         # Why can't we just read this in from the default attributes?
         :availability_zone => 'us-west-2a',
@@ -172,6 +174,6 @@ frontends.each do |_host, host_data|
         }
       }
     )
-    action :destroy
+    #action :destroy
   end
 end

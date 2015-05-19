@@ -29,9 +29,7 @@ desc "Run ChefSpec examples"
 RSpec::Core::RakeTask.new(:spec)
 
 desc 'Run all tests on Travis'
-#task travis: ['style', 'spec', 'integration:cloud']
 task travis: %w(style spec)
 
 # Default
-#task default: ['style', 'spec', 'integration:vagrant']
 task default:  %w(style spec)

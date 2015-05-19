@@ -18,20 +18,7 @@ primary - for the primary back end server
 
 Requirements
 ------------
-NOTE: If you want to use the .kitchen.yml file that comes with this cookbook, you must use my fork of the kitchen-ec2 driver, at least until my pull request to add static IP address support is merged. You can check out my fork and the add_private_ip branch here:
-
-https://github.com/scarolan/kitchen-ec2/tree/add_private_ip 
-
-Instructions to build your own kitchen-ec2 gem to work with the ChefDK are below.
-
-```
-chef gem uninstall kitchen-ec2
-git clone https://github.com/scarolan/kitchen-ec2
-cd kitchen-ec2
-git checkout add_private_ip
-gem build kitchen-ec2.gemspec
-chef gem install kitchen-ec2-0.8.1.dev.gem
-```
+NOTE: Static IP addresses are now supported in the Kitchen ec2-driver!  So you no longer need to use a forked version of this driver. Just install kitchen-ec2 as usual and you'll be able to use the included .kitchen.yml file.  If you're using the ChefDK, you can simply run "chef gem install kitchen-ec2" to accomplish this.
 
 These are example settings that will work with the default attributes in the cookbook. You can also create your own subnet and security group settings, as long as the necessary ports between the front end and back end servers are open. See this link for the ports that are required by the Chef server:
 
@@ -69,6 +56,7 @@ default['aws_ha_chef']['ebs_volume_id']            EBS volume id.  Create and at
 default['aws_ha_chef']['ebs_device']               Device ID of the ebs_device.  Default is /dev/xvdj
 
 default['aws_ha_chef']['region']                   Region your cluster will be installed in
+default['aws_ha_chef']['availability_zone']        AZ the backend machines will reside in
 
 default['aws_ha_chef']['backend_vip']['fqdn']      FQDN of the backend VIP.  Defaults to backend-vip
 default['aws_ha_chef']['backend_vip']['ip_address'] IP address of the backend VIP. 
@@ -96,6 +84,14 @@ Usage
 
 Usage is fairly simple and straightforward. First configure all the attributes listed above via a role, *.json file, or .kitchen.yml file. The NTP recipe is only required if you don't already have a way to configure NTP.  The hosts recipe sets up your /etc/hosts and /etc/sysconfig/network files so you can use familiar hostnames instead of the ones assigned by Amazon EC2.  See the default attributes file for examples.
 
+If you wish to use Chef provisioning to bring up the cluster, you can use this command:
+
+```
+chef-client -z --chef-zero-port 8899 -o aws_ha_chef::metal_create
+```
+
+(Running Chef Zero on an alternate port is required because of the way the Chef reporting add-on is installed via Chef Zero locally.)
+
 Sample IAM Account Settings
 -----
 These settings are tested and verified working via an IAM user created explicitly for deploying the HA Chef server configuration. You can also apply these settings to a role policy, and then allow users to assume the role if you wish.  This prevents you from having to secure keys, as the keys are generated dynamically when necessary.
@@ -110,6 +106,7 @@ These settings are tested and verified working via an IAM user created explicitl
       "Action": [
         "ec2:AttachVolume",
         "ec2:CreateVolume",
+        "ec2:CreateTags",
         "ec2:DescribeVolumeAttribute",
         "ec2:DescribeVolumeStatus",
         "ec2:DescribeVolumes",
