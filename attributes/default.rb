@@ -6,7 +6,7 @@
 #
 
 # URLs to download the Chef 12 core and HA packages
-default['aws_ha_chef']['urls']['core'] = 'https://web-dl.packagecloud.io/chef/stable/packages/el/6/chef-server-core-12.0.5-1.el6.x86_64.rpm'
+default['aws_ha_chef']['urls']['core'] = 'https://web-dl.packagecloud.io/chef/stable/packages/el/6/chef-server-core-12.0.8-1.el6.x86_64.rpm'
 default['aws_ha_chef']['urls']['ha'] = 'https://web-dl.packagecloud.io/chef/stable/packages/el/6/chef-ha-1.0.0-1.x86_64.rpm'
 
 # Credentials of your IAM user, for managing storage and floating IP
